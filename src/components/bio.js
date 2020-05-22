@@ -5,13 +5,18 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useContext } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
 
 import { rhythm } from "../utils/typography"
+import { LocaleContext } from './layout'
+
 
 const Bio = () => {
+  const locale = useContext(LocaleContext)
+
+
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
@@ -21,21 +26,25 @@ const Bio = () => {
           }
         }
       }
-      site {
-        siteMetadata {
-          author {
-            name
-            summary
-          }
-          social {
-            twitter
+
+      allSitemetadataJson {
+        edges {
+          node {
+            locale
+            author {
+              name
+              summary
+            }
+            social {
+              twitter
+            }        
           }
         }
       }
     }
   `)
 
-  const { author, social } = data.site.siteMetadata
+  const { author, social } = data.allSitemetadataJson.edges.map(e => e.node).find(n => n.locale === locale)
   return (
     <div
       style={{

@@ -9,11 +9,6 @@ import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
 type Data = {
-  site: {
-    siteMetadata: {
-      title: string
-    }
-  }
   allMarkdownRemark: {
     edges: {
       node: {
@@ -45,11 +40,6 @@ type PageContextType = {
 const BlogIndex = ({ data, location, pageContext }: PageProps<Data, PageContextType>) => {
   const posts = data.allMarkdownRemark.edges
   
-  console.log(posts[0].node.frontmatter.cover.childImageSharp)
-  console.log(posts[1].node.frontmatter.cover.childImageSharp)
-  console.log(posts[2].node.frontmatter.cover.childImageSharp)
-  console.log(posts[3].node.frontmatter.title)
-
   return (
     <Layout
       location={location}

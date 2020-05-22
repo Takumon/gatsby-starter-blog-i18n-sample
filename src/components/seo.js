@@ -10,19 +10,23 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-import { I18nContext } from './layout'
+import { LocaleContext, I18nContext } from './layout'
 
 const SEO = ({ description, lang, meta, title }) => {
+  const locale = useContext(LocaleContext)
   const i18n = useContext(I18nContext)
 
-  const { site } = useStaticQuery(
+  const { allSitemetadataJson } = useStaticQuery(
     graphql`
       query {
-        site {
-          siteMetadata {
-            description
-            social {
-              twitter
+        allSitemetadataJson {
+          edges {
+            node {
+              locale
+              description
+              social {
+                twitter
+              }        
             }
           }
         }
@@ -30,7 +34,8 @@ const SEO = ({ description, lang, meta, title }) => {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const siteMetadata = allSitemetadataJson.edges.map(e => e.node).find(n => n.locale === locale)
+  const metaDescription = description || siteMetadata.description
 
   return (
     <Helmet
@@ -62,7 +67,7 @@ const SEO = ({ description, lang, meta, title }) => {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.social.twitter,
+          content: siteMetadata.social.twitter,
         },
         {
           name: `twitter:title`,
