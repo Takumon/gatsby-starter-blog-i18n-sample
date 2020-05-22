@@ -30,12 +30,19 @@ type Data = {
   }
 }
 
-const BlogIndex = ({ data, location }: PageProps<Data>) => {
-  const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
+type PageContextType = {
+  locale: string
+} 
 
+const BlogIndex = ({ data, location, pageContext }: PageProps<Data, PageContextType>) => {
+  const posts = data.allMarkdownRemark.edges
+  
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout
+      location={location}
+      locale={pageContext.locale}
+      titleKey={'title'}
+    >
       <SEO title="All posts" />
       <Bio />
       {posts.map(({ node }) => {
@@ -72,11 +79,6 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query($locale: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMarkdownRemark(
       filter: { fields: { localePath: { eq: $locale } } }
       sort: { fields: [frontmatter___date], order: DESC }

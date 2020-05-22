@@ -1,6 +1,6 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const locales = require('./src/constants/locales')
+const locales = require('./src/i18n/locales')
 const defaultLocale = Object.keys(locales).map(key => locales[key]).find(l => l.default)
 
 
@@ -14,7 +14,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const pathWithoutTrailingSlash = createFilePath({ node, getNode, trailingSlash: false }) // to make easy to deal with extension
   const { locale, localizedSlug } = extractLocalAndSlug(pathWithoutTrailingSlash, node.frontmatter.slug)
 
-  console.log(locale, localizedSlug)
   createNodeField({ name: `slug`,           node,   value: localizedSlug  })
   createNodeField({ name: `localePath`,      node,   value: locale.path    })
 }
@@ -67,16 +66,15 @@ exports.createPages = async ({ graphql, actions }) => {
     return result
   }, {})
 
-  console.log(postsByLocal)
 
-
-  for (const [_, _posts] of Object.entries(postsByLocal)) {
+  for (const [locale, _posts] of Object.entries(postsByLocal)) {
     _posts.forEach((post, index) => {
       createPage({
         path: post.node.fields.slug,
         component: blogPost,
         context: {
           slug: post.node.fields.slug,
+          locale,
           ...previousAndNext(_posts, index)
         },
       })

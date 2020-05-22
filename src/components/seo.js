@@ -5,18 +5,21 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
+import { I18nContext } from './layout'
+
 const SEO = ({ description, lang, meta, title }) => {
+  const i18n = useContext(I18nContext)
+
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
-            title
             description
             social {
               twitter
@@ -35,7 +38,7 @@ const SEO = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${i18n.t('title')}`}
       meta={[
         {
           name: `description`,

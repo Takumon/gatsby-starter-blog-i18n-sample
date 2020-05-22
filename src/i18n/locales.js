@@ -4,8 +4,8 @@ module.exports = {
     locale: 'English',
     default: true
   },
-  jp: {
-    path: 'jp',
+  ja: {
+    path: 'ja',
     locale: 'Japan'
   }
 }
