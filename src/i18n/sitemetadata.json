@@ -1,6 +1,7 @@
 [
   {
     "locale": "en",
+    "title": "gatsby-starter-blog-i18n-sample",
     "author": {
       "name": "Kyle Mathews",
       "summary": "who lives and works in San Francisco building useful things."
@@ -13,6 +14,7 @@
   },
   {
     "locale": "ja",
+    "title": "gatsby-starter-blog-i18n-sample",
     "author": {
       "name": "マット",
       "summary": "サンフランシスコにすんでるよ。"

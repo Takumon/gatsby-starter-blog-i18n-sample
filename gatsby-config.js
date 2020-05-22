@@ -1,5 +1,13 @@
 
+const [en, ja] = require('./src/i18n/sitemetadata.json')
+
 module.exports = {
+  siteMetadata: {
+    siteUrl: ja.siteUrl,
+    author: ja.author.name,
+    title: ja.title,
+    description: ja.description
+  },
   plugins: [
     `gatsby-transformer-json`,
     {
