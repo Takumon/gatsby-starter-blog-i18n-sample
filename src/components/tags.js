@@ -4,7 +4,7 @@ import Tag from './tag'
 const Tags = ({value}) => {
   return (
     <div style={{display: 'flex', marginBottom: '12px'}}>
-      {value.map(tag => <Tag value={tag}/>)}
+      {value.map(tag => <Tag key={tag} value={tag}/>)}
     </div>
   )
 }

@@ -1,13 +1,11 @@
 // Gatsby supports TypeScript natively!
 import React from "react"
-import { PageProps, Link, graphql } from "gatsby"
-import Img from 'gatsby-image'
+import { PageProps, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
-import Tags from "../components/tags"
+import PostPreview from "../components/post-preview"
 
 type Data = {
   allMarkdownRemark: {
@@ -52,36 +50,7 @@ const BlogIndex = ({ data, location, pageContext }: PageProps<Data, PageContextT
     >
       <SEO title="All posts" />
       <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
-        return (
-          <article key={node.fields.slug}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-            </header>
-            <Tags value={node.frontmatter.tags} />
-            <div>
-              <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />
-            </div>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </section>
-          </article>
-        )
-      })}
+      {posts.map(({ node }) => <PostPreview key={node.fields.slug} node={node} />)}
     </Layout>
   )
 }
