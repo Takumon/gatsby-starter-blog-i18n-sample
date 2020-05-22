@@ -8,7 +8,7 @@ import { rhythm, scale } from "../utils/typography"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
-  const { previous, next, locale } = pageContext
+  const { previous, next, locale, supportedLangs } = pageContext
   
   return (
     <Layout
@@ -16,6 +16,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       locale={locale}
       titleKey={'title'}
       defaultSlug={post.fields.defaultSlug}
+      supportedLangs={supportedLangs}
     >
       <SEO
         title={post.frontmatter.title}

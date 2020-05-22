@@ -9,7 +9,7 @@ export const I18nContext = React.createContext(null);
 export const LocaleContext = React.createContext(null);
 
 
-const Layout = ({ location, locale, titleKey, defaultSlug, children }) => {
+const Layout = ({ location, locale, titleKey, defaultSlug, supportedLangs, children }) => {
   i18n.changeLanguage(locale)
 
 
@@ -68,7 +68,7 @@ const Layout = ({ location, locale, titleKey, defaultSlug, children }) => {
           }}
         >
           <header>{header}</header>
-          <LocaleButton defaultSlug={defaultSlug} />
+          <LocaleButton defaultSlug={defaultSlug} supportedLangs={supportedLangs} />
           <main>{children}</main>
           <footer>
             © {new Date().getFullYear()}, Built with

@@ -1,23 +1,22 @@
 ---
-title: Hello World
+title: こんにちは世界
 date: "2015-05-01T22:12:03.284Z"
-description: "Hello World"
+description: "こんにちは世界"
 slug: "/blog/hello-world"
 ---
+新しいフェイクブログの初投稿です! なんてワクワクするんだろう。
 
-This is my first post on my new fake blog! How exciting!
+これからも面白いことをたくさん書いていきたいと思います。
 
-I'm sure I'll write a lot more interesting things in the future.
+あ、それと、このウィキペディアからの引用です。
+鴨の塩漬け卵】(https://en.wikipedia.org/wiki/Salted_duck_egg)。
 
-Oh, and here's a great quote from this Wikipedia on
-[salted duck eggs](https://en.wikipedia.org/wiki/Salted_duck_egg).
+> 鴨の塩漬け卵は、中国の保存食である。
+> 卵を塩水に浸したり、湿った塩漬けの炭の中に各卵を詰めたり。アジアでは
+> スーパーでは、これらの卵が塩漬けの厚い層に覆われて売られていることがあります。
+> 炭ペーストを使用しています。また、卵は塩漬けのペーストを取り除いた状態で販売されることもあります。
+> プラスチックに包んで真空パックしています。塩の硬化工程から
+> 鴨の塩辛の卵は、ツヤツヤとした香りとゼラチン状の卵白、そして
+> 鮮やかなオレンジ色をした丸い黄身。
 
-> A salted duck egg is a Chinese preserved food product made by soaking duck
-> eggs in brine, or packing each egg in damp, salted charcoal. In Asian
-> supermarkets, these eggs are sometimes sold covered in a thick layer of salted
-> charcoal paste. The eggs may also be sold with the salted paste removed,
-> wrapped in plastic, and vacuum packed. From the salt curing process, the
-> salted duck eggs have a briny aroma, a gelatin-like egg white and a
-> firm-textured, round yolk that is bright orange-red in color.
-
-![Chinese Salty Egg](./salty_egg.jpg)
+![中国の塩辛い卵](./salty_egg.jpg)

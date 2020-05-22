@@ -10,6 +10,7 @@ const NotFoundPage = ({ location, pageContext }) => {
       location={location}
       locale={pageContext.locale}
       titleKey={'title'}
+      supportedLangs={pageContext.supportedLangs}
     >
       <SEO title="404: Not Found" />
       <h1>Not Found</h1>

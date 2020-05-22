@@ -36,6 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
               fields {
                 localePath
                 slug
+                defaultSlug
               }
               frontmatter {
                 title
@@ -53,6 +54,20 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create blog posts pages.
   const posts = result.data.allMarkdownRemark.edges
+
+  const supportedLangsByPost = posts.reduce((result, post) => {
+    const { defaultSlug, localePath } = post.node.fields
+
+    if (result.hasOwnProperty(defaultSlug)) {
+      if (!result[defaultSlug].includes(localePath)) {
+        result[defaultSlug].push(localePath)
+      }
+      return result
+    }
+
+    result[defaultSlug] = [ localePath ]
+    return result
+  }, {})
 
   const postsByLocal = posts.reduce((result, post) => {
 
@@ -76,6 +91,7 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {
           slug: post.node.fields.slug,
           locale,
+          supportedLangs: supportedLangsByPost[post.node.fields.defaultSlug],
           ...previousAndNext(_posts, index)
         },
       })
@@ -91,6 +107,9 @@ exports.onCreatePage = ({ page, actions }) => {
 
   deletePage(page)
 
+  const supportedLangs = Object.keys(locales).map(key => locales[key].path)
+  console.log('ほげほげほげ', supportedLangs)
+
   Object.keys(locales).map(localeKey => {
     const locale = locales[localeKey]
     const localizedPath = locale.default
@@ -101,7 +120,8 @@ exports.onCreatePage = ({ page, actions }) => {
       ...page,
       path: localizedPath,
       context: {
-        locale: locale.path
+        locale: locale.path,
+        supportedLangs,
       }
     })
   })

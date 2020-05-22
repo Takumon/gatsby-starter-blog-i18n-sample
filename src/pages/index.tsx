@@ -33,17 +33,20 @@ type Data = {
 
 type PageContextType = {
   locale: string
+  supportedLangs: [string]
 } 
 
 const BlogIndex = ({ data, location, pageContext }: PageProps<Data, PageContextType>) => {
   const posts = data.allMarkdownRemark.edges
   
+  console.log('ふがぐふぁ',pageContext.supportedLangs)
   return (
     <Layout
       location={location}
       locale={pageContext.locale}
       defaultSlug={'/'}
       titleKey={'title'}
+      supportedLangs={pageContext.supportedLangs}
     >
       <SEO title="All posts" />
       <Bio />
