@@ -71,13 +71,16 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query($locale: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      filter: { fields: { localePath: { eq: $locale } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       edges {
         node {
           excerpt

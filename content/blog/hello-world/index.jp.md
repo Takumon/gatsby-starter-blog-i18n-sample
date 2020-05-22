@@ -1,11 +1,11 @@
 ---
-title: Hello World
+title: こんにちは世界
 date: "2015-05-01T22:12:03.284Z"
-description: "Hello World"
+description: "こんにちは世界"
 slug: "/blog/hello-world"
 ---
 
-This is my first post on my new fake blog! How exciting!
+初記事です！
 
 I'm sure I'll write a lot more interesting things in the future.
 
