@@ -1,9 +1,10 @@
 ---
 title: 初心者
 date: "2015-05-28T22:40:32.169Z"
-description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
+description: デフォルトで生成される抜粋ではなく、SEOやオープングラフを目的としたカスタム記述です。フロントマッターに説明フィールドを追加するだけです。
 slug: "/blog/new-beginnings"
 ---
+
 遥か彼方、山という言葉の裏で、ヴォカリアという国と
 コンソナンティア、そこには盲目のテキストが住んでいます。分離された彼らはブックマークグローブに住んでいます
 セマンティクスの海岸のすぐそば、大きな言語の海。という名前の小さな川が
