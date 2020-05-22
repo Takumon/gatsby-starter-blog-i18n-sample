@@ -2,7 +2,8 @@
 title: こんにちは世界
 date: "2015-05-01T22:12:03.284Z"
 description: "こんにちは世界"
-slug: "/blog/hello-world"
+path: "/blog/hello-world"
+cover: "./image-1.png"
 ---
 新しいフェイクブログの初投稿です! なんてワクワクするんだろう。
 

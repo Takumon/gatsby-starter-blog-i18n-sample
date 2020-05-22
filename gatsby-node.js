@@ -11,12 +11,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     return
   }
 
+  const { sourceInstanceName } = getNode(node.parent)
   const pathWithoutTrailingSlash = createFilePath({ node, getNode, trailingSlash: false }) // to make easy to deal with extension
-  const { localizedSlug, defaultSlug, locale } = extractLocalAndSlug(pathWithoutTrailingSlash, node.frontmatter.slug)
+  const { localizedSlug, defaultSlug, locale } = extractLocalAndSlug(pathWithoutTrailingSlash, node.frontmatter.path)
 
-  createNodeField({ name: `slug`,           node,   value: localizedSlug  })
-  createNodeField({ name: `defaultSlug`,    node,   value: defaultSlug    })
-  createNodeField({ name: `localePath`,     node,   value: locale.path    })
+  createNodeField({ name: 'collection',     node,   value: sourceInstanceName })
+  createNodeField({ name: `slug`,           node,   value: localizedSlug      })
+  createNodeField({ name: `defaultSlug`,    node,   value: defaultSlug        })
+  createNodeField({ name: `localePath`,     node,   value: locale.path        })
 }
 
 
@@ -40,6 +42,28 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                cover {
+                  childImageSharp {
+                    fluid(
+                      maxWidth: 640
+                      maxHeight: 384
+                      quality: 50
+                    ) {
+                      base64
+                      tracedSVG
+                      aspectRatio
+                      src
+                      srcSet
+                      srcWebp
+                      srcSetWebp
+                      sizes
+                      originalImg
+                      originalName
+                      presentationWidth
+                      presentationHeight
+                    }
+                  }
+                }
               }
             }
           }

@@ -1,7 +1,8 @@
 ---
 title: My Second Post!
 date: "2015-05-06T23:46:37.121Z"
-slug: "/blog/my-second-post"
+path: "/blog/my-second-post"
+cover: "./image-2.jpg"
 ---
 
 Wow! I love blogging so much already.

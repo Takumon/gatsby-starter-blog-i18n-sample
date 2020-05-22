@@ -1,6 +1,7 @@
 // Gatsby supports TypeScript natively!
 import React from "react"
 import { PageProps, Link, graphql } from "gatsby"
+import Img from 'gatsby-image'
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -21,6 +22,11 @@ type Data = {
           title: string
           date: string
           description: string
+          cover: {
+            childImageSharp: {
+              fluid: object
+            }
+          }
         }
         fields: {
           slug: string
@@ -39,6 +45,11 @@ type PageContextType = {
 const BlogIndex = ({ data, location, pageContext }: PageProps<Data, PageContextType>) => {
   const posts = data.allMarkdownRemark.edges
   
+  console.log(posts[0].node.frontmatter.cover.childImageSharp)
+  console.log(posts[1].node.frontmatter.cover.childImageSharp)
+  console.log(posts[2].node.frontmatter.cover.childImageSharp)
+  console.log(posts[3].node.frontmatter.title)
+
   return (
     <Layout
       location={location}
@@ -65,6 +76,10 @@ const BlogIndex = ({ data, location, pageContext }: PageProps<Data, PageContextT
               </h3>
               <small>{node.frontmatter.date}</small>
             </header>
+
+            <div>
+              <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />
+            </div>
             <section>
               <p
                 dangerouslySetInnerHTML={{
@@ -98,6 +113,18 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            cover {
+              childImageSharp {
+                fluid(
+                  maxWidth: 800
+                  maxHeight: 560
+                  quality: 50
+                  traceSVG: { color: "#B6BCCF" }
+                ) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                }
+              }
+            }
           }
         }
       }

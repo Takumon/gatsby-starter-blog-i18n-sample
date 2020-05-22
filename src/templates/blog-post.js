@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
+import Img from "gatsby-image"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -42,6 +42,9 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             {post.frontmatter.date}
           </p>
         </header>
+        <div>
+          <Img fluid={post.frontmatter.cover.childImageSharp.fluid} />
+        </div>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
@@ -98,6 +101,16 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        cover {
+          childImageSharp {
+            fluid(maxWidth: 1920, maxHeight: 1024, quality: 90) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+            resize(width: 1280, quality: 90) {
+              src
+            }
+          }
+        }
       }
     }
   }
