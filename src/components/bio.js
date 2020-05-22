@@ -10,11 +10,12 @@ import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
 
 import { rhythm } from "../utils/typography"
-import { LocaleContext } from './layout'
+import { LocaleContext, I18nContext } from './layout'
 
 
 const Bio = () => {
   const locale = useContext(LocaleContext)
+  const i18n = useContext(I18nContext)
 
 
   const data = useStaticQuery(graphql`
@@ -66,10 +67,10 @@ const Bio = () => {
         }}
       />
       <p>
-        Written by <strong>{author.name}</strong> {author.summary}
+      {i18n.t('Written by')} <strong>{author.name}</strong> {author.summary}
         {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
+          {i18n.t('twitter-follow')}
         </a>
       </p>
     </div>

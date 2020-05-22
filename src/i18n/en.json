@@ -1,6 +1,8 @@
 {
   "translation": {
     "notFoundPageTitle": "404 not found",
-    "title": "gatsby-starter-blog-i18n"
+    "title": "gatsby-starter-blog-i18n",
+    "Written by": "Written by",
+    "twitter-follow": "You should follow him on Twitter"
   }
 }
