@@ -12,10 +12,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 
   const pathWithoutTrailingSlash = createFilePath({ node, getNode, trailingSlash: false }) // to make easy to deal with extension
-  const { locale, localizedSlug } = extractLocalAndSlug(pathWithoutTrailingSlash, node.frontmatter.slug)
+  const { localizedSlug, defaultSlug, locale } = extractLocalAndSlug(pathWithoutTrailingSlash, node.frontmatter.slug)
 
   createNodeField({ name: `slug`,           node,   value: localizedSlug  })
-  createNodeField({ name: `localePath`,      node,   value: locale.path    })
+  createNodeField({ name: `defaultSlug`,    node,   value: defaultSlug    })
+  createNodeField({ name: `localePath`,     node,   value: locale.path    })
 }
 
 
@@ -115,7 +116,8 @@ function extractLocalAndSlug(pathWithoutTrailingSlash, slug) {
     // default lang
     return  {
       locale: defaultLocale,
-      localizedSlug: slug
+      localizedSlug: slug,
+      defaultSlug: slug,
     }
   }
 
@@ -125,7 +127,8 @@ function extractLocalAndSlug(pathWithoutTrailingSlash, slug) {
 
   return {
     locale,
-    localizedSlug: locale.path + slug
+    localizedSlug: locale.path + slug,
+    defaultSlug: slug,
   }
 }
 

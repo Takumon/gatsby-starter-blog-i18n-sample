@@ -9,12 +9,13 @@ import { rhythm, scale } from "../utils/typography"
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const { previous, next, locale } = pageContext
-
+  
   return (
     <Layout
       location={location}
       locale={locale}
       titleKey={'title'}
+      defaultSlug={post.fields.defaultSlug}
     >
       <SEO
         title={post.frontmatter.title}
@@ -89,6 +90,9 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      fields {
+        defaultSlug
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

@@ -24,6 +24,7 @@ type Data = {
         }
         fields: {
           slug: string
+          defaultSlug: string
         }
       }
     }[]
@@ -41,6 +42,7 @@ const BlogIndex = ({ data, location, pageContext }: PageProps<Data, PageContextT
     <Layout
       location={location}
       locale={pageContext.locale}
+      defaultSlug={'/'}
       titleKey={'title'}
     >
       <SEO title="All posts" />
@@ -88,6 +90,7 @@ export const pageQuery = graphql`
           excerpt
           fields {
             slug
+            defaultSlug
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
