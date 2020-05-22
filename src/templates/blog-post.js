@@ -23,6 +23,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
+        imagePath={post.frontmatter.cover.childImageSharp.fluid.src}
       />
       <article>
         <header>

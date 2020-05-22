@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import { LocaleContext, I18nContext } from './layout'
 
-const SEO = ({ description, lang, meta, title }) => {
+const SEO = ({ description, lang, meta, title, imagePath }) => {
   const locale = useContext(LocaleContext)
   const i18n = useContext(I18nContext)
 
@@ -53,6 +53,10 @@ const SEO = ({ description, lang, meta, title }) => {
           property: `og:title`,
           content: title,
         },
+        {
+          property: `og:image`,
+          content: imagePath,
+        }
         {
           property: `og:description`,
           content: metaDescription,
