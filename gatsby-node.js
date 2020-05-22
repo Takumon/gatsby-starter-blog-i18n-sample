@@ -108,7 +108,6 @@ exports.onCreatePage = ({ page, actions }) => {
   deletePage(page)
 
   const supportedLangs = Object.keys(locales).map(key => locales[key].path)
-  console.log('ほげほげほげ', supportedLangs)
 
   Object.keys(locales).map(localeKey => {
     const locale = locales[localeKey]

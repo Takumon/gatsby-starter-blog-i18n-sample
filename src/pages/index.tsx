@@ -39,7 +39,6 @@ type PageContextType = {
 const BlogIndex = ({ data, location, pageContext }: PageProps<Data, PageContextType>) => {
   const posts = data.allMarkdownRemark.edges
   
-  console.log('ふがぐふぁ',pageContext.supportedLangs)
   return (
     <Layout
       location={location}
