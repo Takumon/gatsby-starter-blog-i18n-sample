@@ -8,7 +8,7 @@ import { LocaleContext } from './layout'
 const LocalizedLink = ({ to, ...props }) => {
   const locale = useContext(LocaleContext)
   const path = locales[locale].default ? to : `/${locale}${to}`
-  return <Link {...props} to={path} />
+  return <Link to={path} {...props} />
 }
 
 LocalizedLink.propTypes = {

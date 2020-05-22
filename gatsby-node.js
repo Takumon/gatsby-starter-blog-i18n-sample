@@ -26,6 +26,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const tagPosts = path.resolve('src/templates/tag.js');
+
   const result = await graphql(
     `
       {
@@ -35,6 +37,7 @@ exports.createPages = async ({ graphql, actions }) => {
         ) {
           edges {
             node {
+              excerpt
               fields {
                 localePath
                 slug
@@ -42,6 +45,8 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                description
+                tags
                 cover {
                   childImageSharp {
                     fluid(
@@ -121,6 +126,59 @@ exports.createPages = async ({ graphql, actions }) => {
       })
     })
   }
+
+
+  // {tag: {localePath: [post]}}
+  const tagsAndLocalPaths = {};
+  Object.entries(postsByLocal).forEach(([localPath, _posts]) => {
+    _posts.forEach(post => {
+      const tags = post.node.frontmatter.tags
+      if (!tags) {
+        return
+      }
+
+      tags.forEach(tag => {
+        let targetTag = tagsAndLocalPaths[tag]
+        if (!targetTag) {
+          tagsAndLocalPaths[tag] = { [localPath] : [ post ] }
+          return
+        }
+
+        const target = targetTag[localPath]
+        if (!target) {
+          targetTag[localPath] = [ post ]
+          return
+        }
+
+        target.push(post)       
+      });
+    });
+  })
+
+  Object.entries(tagsAndLocalPaths).forEach(([tag, localePathsAndPosts]) => {
+
+    const supportedLangs = Object.keys(localePathsAndPosts)
+    Object.entries(localePathsAndPosts).forEach(([localePath, posts]) => {
+      const currentLocale = Object.keys(locales).map(key => locales[key]).find(l => l.path === localePath)
+      const  localizedPath = currentLocale.default
+        ? `/tags/${tag}`
+        : currentLocale.path + `/tags/${tag}`
+
+        console.log(supportedLangs)
+      createPage({
+        path: localizedPath,
+        component: tagPosts,
+        context: {
+          posts,
+          locale: currentLocale.path,
+          supportedLangs,
+
+          tagName: tag,
+        },
+      });  
+    })
+  })
+
 }
 
 

@@ -3,6 +3,7 @@ title: ２個目の記事！
 date: "2015-05-06T23:46:37.121Z"
 path: "/blog/my-second-post"
 cover: "./image-2.jpg"
+tags: ['tag2', 'tag3']
 ---
 
 うわぁー！！！！！！！！！！！！！！！！（笑 もうブログを書くのが大好きになってしまいました。

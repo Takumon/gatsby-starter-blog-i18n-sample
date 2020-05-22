@@ -7,6 +7,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
+import Tags from "../components/tags"
 
 type Data = {
   allMarkdownRemark: {
@@ -17,6 +18,7 @@ type Data = {
           title: string
           date: string
           description: string
+          tags: [string]
           cover: {
             childImageSharp: {
               fluid: object
@@ -66,7 +68,7 @@ const BlogIndex = ({ data, location, pageContext }: PageProps<Data, PageContextT
               </h3>
               <small>{node.frontmatter.date}</small>
             </header>
-
+            <Tags value={node.frontmatter.tags} />
             <div>
               <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />
             </div>
@@ -103,6 +105,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            tags
             cover {
               childImageSharp {
                 fluid(

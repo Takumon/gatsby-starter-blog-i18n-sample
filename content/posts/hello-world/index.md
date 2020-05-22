@@ -4,6 +4,7 @@ date: "2015-05-01T22:12:03.284Z"
 description: "こんにちは世界"
 path: "/blog/hello-world"
 cover: "./image-1.png"
+tags: ['tag1', 'tag2', 'tag3']
 ---
 新しいフェイクブログの初投稿です! なんてワクワクするんだろう。
 
